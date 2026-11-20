@@ -1,0 +1,56 @@
+{
+	"name": "n8n-nodes-haryai",
+	"version": "0.1.0",
+	"description": "n8n node for Seedance 2.5 and Seedance 2.5 Flash video generation through HaryAI: text to video, first and last frame, reference images, sound.",
+	"license": "MIT",
+	"homepage": "https://github.com/sunsiyuan/n8n-nodes-haryai",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"seedance",
+		"seedance-2.5",
+		"bytedance",
+		"video-generation",
+		"ai-video",
+		"haryai"
+	],
+	"author": {
+		"name": "HaryAI",
+		"email": "support@haryai.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sunsiyuan/n8n-nodes-haryai.git"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist",
+		"!dist/tsconfig.tsbuildinfo",
+		"!dist/**/*.map"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/HaryAiApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/HaryAiSeedance/HaryAiSeedance.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "*",
+		"eslint": "9.39.4",
+		"prettier": "3.8.3",
+		"typescript": "5.9.3",
+		"@types/node": "^22"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}
