@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-haryai",
-	"version": "0.1.1",
+	"version": "0.2.0",
 	"description": "n8n node for Seedance 2.5 and Seedance 2.5 Flash video generation through HaryAI: text to video, first and last frame, reference images, sound.",
 	"license": "MIT",
 	"homepage": "https://github.com/sunsiyuan/n8n-nodes-haryai",

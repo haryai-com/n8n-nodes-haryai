@@ -9,9 +9,13 @@ import type {
 } from 'n8n-workflow';
 import { NodeApiError, NodeConnectionTypes, NodeOperationError, sleep } from 'n8n-workflow';
 
+// The -unlock names are the same models with fewer content limits, at a
+// higher price (https://haryai.com/en/seedance-api-pricing).
 const MODELS = {
 	full: 'dreamina-seedance-2-5-260628',
 	flash: 'dreamina-seedance-2-5-flash-261115',
+	fullUnlock: 'dreamina-seedance-2-5-260628-unlock',
+	flashUnlock: 'dreamina-seedance-2-5-flash-261115-unlock',
 };
 
 async function api(
@@ -98,6 +102,8 @@ export class HaryAiSeedance implements INodeType {
 				options: [
 					{ name: 'Seedance 2.5', value: 'full' },
 					{ name: 'Seedance 2.5 Flash (Cheaper, 480p and 720p)', value: 'flash' },
+					{ name: 'Seedance 2.5 Unlocked (Fewer Content Limits)', value: 'fullUnlock' },
+					{ name: 'Seedance 2.5 Flash Unlocked (Fewer Content Limits, 480p and 720p)', value: 'flashUnlock' },
 				],
 				default: 'full',
 				displayOptions: { show: { operation: ['generate', 'submit'] } },
@@ -211,7 +217,7 @@ export class HaryAiSeedance implements INodeType {
 
 				const model = this.getNodeParameter('model', i) as keyof typeof MODELS;
 				const resolution = this.getNodeParameter('resolution', i) as string;
-				if (model === 'flash' && resolution === '1080p') {
+				if ((model === 'flash' || model === 'flashUnlock') && resolution === '1080p') {
 					throw new NodeOperationError(this.getNode(), 'Seedance 2.5 Flash has 480p and 720p only', { itemIndex: i });
 				}
 				const images = ((this.getNodeParameter('images', i, {}) as IDataObject).image ?? []) as IDataObject[];
