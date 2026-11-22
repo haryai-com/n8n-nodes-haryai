@@ -57,6 +57,7 @@ Paid per second of video from your HaryAI balance: Seedance 2.5 at 720p is $${fu
 - [seedance-2.5-api](https://github.com/sunsiyuan/seedance-2.5-api): the API, curl examples, Q&A
 - [seedance-comfyui](https://github.com/sunsiyuan/seedance-comfyui): the same in ComfyUI
 - [seedance-skill](https://github.com/sunsiyuan/seedance-skill): Seedance 2.5 as a Claude Code and Codex skill
+- [nano-banana-api](https://github.com/sunsiyuan/nano-banana-api): Nano Banana 2.1 and 2 through the OpenAI images API or Gemini's own format
 - API reference: [docs/video.md](https://haryai.com/docs/video.md)
 
 MIT. Prices as of ${today}.
@@ -107,6 +108,7 @@ Manual Trigger 接 HaryAI Seedance，选 Generate Video：
 - [seedance-2.5-api](https://github.com/sunsiyuan/seedance-2.5-api)：接口本身、curl 示例和常见问题
 - [seedance-comfyui](https://github.com/sunsiyuan/seedance-comfyui)：在 ComfyUI 里用
 - [seedance-skill](https://github.com/sunsiyuan/seedance-skill)：Claude Code 和 Codex 用的 Seedance 2.5 skill
+- [nano-banana-api](https://github.com/sunsiyuan/nano-banana-api)：用 OpenAI 图片接口或 Gemini 原生格式调 Nano Banana 2.1 和 2
 - 接口文档：[docs/video.md](https://haryai.com/docs/video.md)
 
 MIT 许可。价格截至 ${today}。
