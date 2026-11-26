@@ -40,10 +40,10 @@ Manual Trigger 接 HaryAI Seedance，选 Generate Video：
 
 ## 相关
 
-- [seedance-2.5-api](https://github.com/sunsiyuan/seedance-2.5-api)：接口本身、curl 示例和常见问题
-- [seedance-comfyui](https://github.com/sunsiyuan/seedance-comfyui)：在 ComfyUI 里用
-- [seedance-skill](https://github.com/sunsiyuan/seedance-skill)：Claude Code 和 Codex 用的 Seedance 2.5 skill
-- [nano-banana-api](https://github.com/sunsiyuan/nano-banana-api)：用 OpenAI 图片接口或 Gemini 原生格式调 Nano Banana 2.1 和 2
+- [seedance-2.5-api](https://github.com/haryai-com/seedance-2.5-api)：接口本身、curl 示例和常见问题
+- [seedance-comfyui](https://github.com/haryai-com/seedance-comfyui)：在 ComfyUI 里用
+- [seedance-skill](https://github.com/haryai-com/seedance-skill)：Claude Code 和 Codex 用的 Seedance 2.5 skill
+- [nano-banana-api](https://github.com/haryai-com/nano-banana-api)：用 OpenAI 图片接口或 Gemini 原生格式调 Nano Banana 2.1 和 2
 - 接口文档：[docs/video.md](https://haryai.com/docs/video.md)
 
-MIT 许可。价格截至 2026-11-22。
+MIT 许可。价格截至 2026-11-26。

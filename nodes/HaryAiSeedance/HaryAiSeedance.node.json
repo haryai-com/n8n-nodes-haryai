@@ -5,6 +5,6 @@
 	"categories": ["Marketing & Content"],
 	"resources": {
 		"credentialDocumentation": [{ "url": "https://haryai.com/docs/video.md" }],
-		"primaryDocumentation": [{ "url": "https://github.com/sunsiyuan/n8n-nodes-haryai" }]
+		"primaryDocumentation": [{ "url": "https://github.com/haryai-com/n8n-nodes-haryai" }]
 	}
 }
