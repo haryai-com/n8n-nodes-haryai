@@ -1,7 +1,7 @@
 {
 	"name": "n8n-nodes-haryai",
-	"version": "0.2.0",
-	"description": "n8n node for Seedance 2.5 and Seedance 2.5 Flash video generation through HaryAI: text to video, first and last frame, reference images, sound.",
+	"version": "0.3.0",
+	"description": "n8n nodes for HaryAI: Seedance 2.5 video (text to video, first and last frame, reference images, videos and audio, sound) and Seedream 5.5 / Nano Banana images (text to image, reference images, edits).",
 	"license": "MIT",
 	"homepage": "https://github.com/haryai-com/n8n-nodes-haryai",
 	"keywords": [
@@ -12,7 +12,10 @@
 		"bytedance",
 		"video-generation",
 		"ai-video",
-		"haryai"
+		"haryai",
+		"seedream",
+		"nano-banana",
+		"image-generation"
 	],
 	"author": {
 		"name": "HaryAI",
@@ -40,7 +43,8 @@
 			"dist/credentials/HaryAiApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/HaryAiSeedance/HaryAiSeedance.node.js"
+			"dist/nodes/HaryAiSeedance/HaryAiSeedance.node.js",
+			"dist/nodes/HaryAiImage/HaryAiImage.node.js"
 		]
 	},
 	"devDependencies": {

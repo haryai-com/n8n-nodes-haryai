@@ -18,6 +18,10 @@ const MODELS = {
 	flashUnlock: 'dreamina-seedance-2-5-flash-261115-unlock',
 };
 
+// References per request (Volcengine Ark, "创建视频生成任务"): images, videos
+// and audio clips; Flash takes fewer.
+const LIMITS = { full: [30, 10, 10], flash: [10, 5, 5] };
+
 async function api(
 	this: IExecuteFunctions,
 	method: IHttpRequestMethods,
@@ -153,7 +157,7 @@ export class HaryAiSeedance implements INodeType {
 				placeholder: 'Add Image',
 				default: {},
 				description:
-					'Image URLs or data URIs. Use a first frame (and optionally a last frame), or up to 4 reference images, not both.',
+					'Image URLs or data URIs. Use a first frame (and optionally a last frame), or reference images (up to 30; Flash 10), not both.',
 				displayOptions: { show: { operation: ['generate', 'submit'] } },
 				options: [
 					{
@@ -176,6 +180,41 @@ export class HaryAiSeedance implements INodeType {
 									{ name: 'Reference Image', value: 'reference_image' },
 								],
 								default: 'first_frame',
+							},
+						],
+					},
+				],
+			},
+			{
+				displayName: 'Reference Videos and Audio',
+				name: 'media',
+				type: 'fixedCollection',
+				typeOptions: { multipleValues: true },
+				placeholder: 'Add Video or Audio',
+				default: {},
+				description:
+					'Public URLs. Videos (mp4 or mov, 480p or more) and audio (mp3 or wav) run 2 to 30 s each, videos 30 s together. Up to 10 of each (Flash 5). Not together with a first or last frame.',
+				displayOptions: { show: { operation: ['generate', 'submit'] } },
+				options: [
+					{
+						name: 'item',
+						displayName: 'Item',
+						values: [
+							{
+								displayName: 'URL',
+								name: 'url',
+								type: 'string',
+								default: '',
+							},
+							{
+								displayName: 'Type',
+								name: 'type',
+								type: 'options',
+								options: [
+									{ name: 'Video', value: 'video' },
+									{ name: 'Audio', value: 'audio' },
+								],
+								default: 'video',
 							},
 						],
 					},
@@ -220,10 +259,18 @@ export class HaryAiSeedance implements INodeType {
 				if ((model === 'flash' || model === 'flashUnlock') && resolution === '1080p') {
 					throw new NodeOperationError(this.getNode(), 'Seedance 2.5 Flash has 480p and 720p only', { itemIndex: i });
 				}
-				const images = ((this.getNodeParameter('images', i, {}) as IDataObject).image ?? []) as IDataObject[];
+				const images = (((this.getNodeParameter('images', i, {}) as IDataObject).image ?? []) as IDataObject[]).filter((im) => im.url);
+				const media = (((this.getNodeParameter('media', i, {}) as IDataObject).item ?? []) as IDataObject[]).filter((m) => m.url);
 				const roles = images.map((im) => im.role as string);
-				if (roles.includes('reference_image') && roles.some((r) => r !== 'reference_image')) {
-					throw new NodeOperationError(this.getNode(), 'Use a first/last frame or reference images, not both', { itemIndex: i });
+				const frames = roles.some((r) => r !== 'reference_image');
+				if (frames && (roles.includes('reference_image') || media.length)) {
+					throw new NodeOperationError(this.getNode(), 'Use a first/last frame, or reference images, videos and audio, not both', { itemIndex: i });
+				}
+				const [maxImages, maxVideos, maxAudio] = LIMITS[model === 'flash' || model === 'flashUnlock' ? 'flash' : 'full'];
+				const videos = media.filter((m) => m.type === 'video');
+				const audio = media.filter((m) => m.type === 'audio');
+				if (images.length > (frames ? 2 : maxImages) || videos.length > maxVideos || audio.length > maxAudio) {
+					throw new NodeOperationError(this.getNode(), `This model takes up to ${maxImages} reference images, ${maxVideos} videos and ${maxAudio} audio clips (or a first and last frame)`, { itemIndex: i });
 				}
 
 				// Always send duration: without it the longest clip is held from the balance.
@@ -231,9 +278,9 @@ export class HaryAiSeedance implements INodeType {
 					model: MODELS[model],
 					content: [
 						{ type: 'text', text: this.getNodeParameter('prompt', i) as string },
-						...images
-							.filter((im) => im.url)
-							.map((im) => ({ type: 'image_url', image_url: { url: im.url }, role: im.role })),
+						...images.map((im) => ({ type: 'image_url', image_url: { url: im.url }, role: im.role })),
+						...videos.map((m) => ({ type: 'video_url', video_url: { url: m.url }, role: 'reference_video' })),
+						...audio.map((m) => ({ type: 'audio_url', audio_url: { url: m.url }, role: 'reference_audio' })),
 					],
 					duration: this.getNodeParameter('duration', i) as number,
 					resolution,

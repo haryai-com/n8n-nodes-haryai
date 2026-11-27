@@ -1,0 +1,10 @@
+{
+	"node": "n8n-nodes-haryai.haryAiImage",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Marketing & Content"],
+	"resources": {
+		"credentialDocumentation": [{ "url": "https://haryai.com/docs/image.md" }],
+		"primaryDocumentation": [{ "url": "https://github.com/haryai-com/n8n-nodes-haryai" }]
+	}
+}

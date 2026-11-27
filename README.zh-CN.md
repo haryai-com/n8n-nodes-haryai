@@ -1,14 +1,20 @@
-# n8n-nodes-haryai：在 n8n 里用 Seedance 2.5
+# n8n-nodes-haryai：在 n8n 里用 Seedance 2.5、Seedream 和 Nano Banana
 
 [English](README.md)
 
-一个 n8n 社区节点，通过 [HaryAI](https://haryai.com/zh/seedance-2-5-comfyui?utm_source=github&utm_medium=readme&utm_campaign=n8n-nodes-haryai) 调用字节的视频模型 Seedance 2.5 和 Seedance 2.5 Flash。价格是 BytePlus 官方价 88 折，不用开 BytePlus 账号。
+n8n 社区节点，通过 [HaryAI](https://haryai.com/zh/seedance-2-5-comfyui?utm_source=github&utm_medium=readme&utm_campaign=n8n-nodes-haryai) 调用字节的视频模型 Seedance 2.5，以及图片模型 Seedream 5.5 和 Nano Banana。Seedance 2.5 是 BytePlus 官方价 88 折，Seedream 8 折，Nano Banana 5 折。不用开 BytePlus 或 Google 账号。
 
 节点名叫 **HaryAI Seedance**：
 
 - **Generate Video**：提交任务，等它完成，把视频作为二进制数据连同地址一起输出
 - **Submit Task** 和 **Get Task**：时间长的任务可以先提交，之后再取结果
-- 支持文生视频、首帧和尾帧、最多 4 张参考图、生成声音以及台词配音对口型
+- 支持文生视频、首帧和尾帧、参考图（最多 30 张，Flash 10 张）、用链接给参考视频和参考音频、生成声音以及台词配音对口型
+- n8n 的 AI Agent 可以把它当工具调用
+
+节点 **HaryAI Image**：
+
+- Seedream 5.5、Nano Banana 2.1 和 Nano Banana 2：文生图，也可以照着最多 14 张参考图画或者改图（填链接或 data URI）
+- 图片作为二进制数据输出（`data`、`data_1`……）
 - n8n 的 AI Agent 可以把它当工具调用
 
 ## 安装
@@ -36,7 +42,7 @@ Manual Trigger 接 HaryAI Seedance，选 Generate Video：
 
 ## 费用
 
-按视频秒数从 HaryAI 余额扣费：Seedance 2.5 720p 每秒 $0.203，Seedance 2.5 Flash 480p 每秒 $0.059。失败或审核没过的任务全额退款。全部价格见 [Seedance API 价格](https://haryai.com/zh/seedance-api-pricing?utm_source=github&utm_medium=readme&utm_campaign=n8n-nodes-haryai)。
+从 HaryAI 余额扣费。视频按秒：Seedance 2.5 720p 每秒 $0.203，Seedance 2.5 Flash 480p 每秒 $0.059。图片：Seedream 5.5 1K 每张 $0.016，Nano Banana 2.1 1K 每张 $0.0168。失败或审核没过的请求不扣费。全部价格见 [价格页](https://haryai.com/zh/pricing?utm_source=github&utm_medium=readme&utm_campaign=n8n-nodes-haryai)。
 
 ## 相关
 
@@ -44,6 +50,6 @@ Manual Trigger 接 HaryAI Seedance，选 Generate Video：
 - [seedance-comfyui](https://github.com/haryai-com/seedance-comfyui)：在 ComfyUI 里用
 - [seedance-skill](https://github.com/haryai-com/seedance-skill)：Claude Code 和 Codex 用的 Seedance 2.5 skill
 - [nano-banana-api](https://github.com/haryai-com/nano-banana-api)：用 OpenAI 图片接口或 Gemini 原生格式调 Nano Banana 2.1 和 2
-- 接口文档：[docs/video.md](https://haryai.com/docs/video.md)
+- 接口文档：[docs/video.md](https://haryai.com/docs/video.md)、[docs/image.md](https://haryai.com/docs/image.md)
 
-MIT 许可。价格截至 2026-11-26。
+MIT 许可。价格截至 2026-11-27。
