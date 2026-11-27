@@ -57,6 +57,21 @@ export class HaryAiImage implements INodeType {
 		credentials: [{ name: 'haryAiApi', required: true }],
 		properties: [
 			{
+				displayName: 'Operation',
+				name: 'operation',
+				type: 'options',
+				noDataExpression: true,
+				options: [
+					{
+						name: 'Generate Image',
+						value: 'generate',
+						action: 'Generate an image',
+						description: 'Make images from a prompt, optionally following or editing reference images',
+					},
+				],
+				default: 'generate',
+			},
+			{
 				displayName: 'Prompt',
 				name: 'prompt',
 				type: 'string',
