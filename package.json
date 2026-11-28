@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-haryai",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "n8n nodes for HaryAI: Seedance 2.5 video (text to video, first and last frame, reference images, videos and audio, sound) and Seedream 5.5 / Nano Banana images (text to image, reference images, edits).",
 	"license": "MIT",
 	"homepage": "https://github.com/haryai-com/n8n-nodes-haryai",

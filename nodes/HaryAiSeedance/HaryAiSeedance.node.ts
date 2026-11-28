@@ -9,13 +9,13 @@ import type {
 } from 'n8n-workflow';
 import { NodeApiError, NodeConnectionTypes, NodeOperationError, sleep } from 'n8n-workflow';
 
-// The -unlock names are the same models with fewer content limits, at a
-// higher price (https://haryai.com/en/seedance-api-pricing).
+// The Unlock models (dreamina) have fewer content limits than the doubao
+// ones, at a higher price (https://haryai.com/en/seedance-api-pricing).
 const MODELS = {
-	full: 'dreamina-seedance-2-5-260628',
-	flash: 'dreamina-seedance-2-5-flash-261115',
-	fullUnlock: 'dreamina-seedance-2-5-260628-unlock',
-	flashUnlock: 'dreamina-seedance-2-5-flash-261115-unlock',
+	full: 'doubao-seedance-2-5-260628',
+	flash: 'doubao-seedance-2-5-flash-261115',
+	fullUnlock: 'dreamina-seedance-2-5-260628',
+	flashUnlock: 'dreamina-seedance-2-5-flash-261115',
 };
 
 // References per request (Volcengine Ark, "创建视频生成任务"): images, videos
